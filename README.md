@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-# springboot_cqrs_gw_istio
-=======
-# springcloud_gw_simple
+# springcloud_gw_simple_istio
 
-## Routing으로 분기 하기
-
-- SpringBoot CQRS Command 서비스 호출 : 8081
-- SpringBoot CQRS Query 서비스 호출 : 8082
->>>>>>> main
+[[🔥 3/22 과제] ISTIO Ingress Gateway ](https://www.notion.so/heewon00/240318-OpenSearch-ElasticStack-OpenFeign-Istio-44704d0495fe43728bffe1c82b1a3e40?pvs=4#1c14e5479a334286b5c4441173cf6201) 
+  - gw는 local에서 실행
