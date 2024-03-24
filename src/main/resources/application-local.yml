@@ -1,0 +1,95 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    health:
+      show-details: always
+      enabled: true
+    loggers:
+      enabled: true
+    prometheus:
+      enabled: true
+    gateway:
+      enabled: true
+    circuitbreakers: ## actuator 에서 circuit breaker 상태 확인
+      enabled: false
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+##circuitbreaker
+#resilience4j.circuitbreaker:
+#  configs:
+#    default:
+#      registerHealthIndicator: true
+#      slidingWindowType: COUNT_BASED
+#      slidingWindowSize: 10 # {통계건수}
+#      minimumNumberOfCalls: 10 # {최소요청횟수}
+#      failureRateThreshold: 60 # {실패율}
+#      slowCallRateThreshold: 60 # {느린요청비율}
+#      slowCallDurationThreshold: 3000 # {느린요청으로 간주할 시간}
+#      permittedNumberOfCallsInHalfOpenState: 2
+#      waitDurationInOpenState: 5s # {Circuit Breaker유지시간}
+#      eventConsumerBufferSize: 10
+#  instances:
+#    apigw:
+#      baseConfig: default
+#    testcirguitbreaker:
+#      baseConfig: default
+
+#--------------------------------------------------
+
+spring:
+  main:
+    web-application-type: reactive
+  h2:
+    # h2 DB
+    console:
+      enabled: true
+      path: /h2-console
+  # Database Platform
+  sql:
+    init:
+      platform: h2
+      mode: embedded
+  #r2dbc
+  r2dbc:
+    url: r2dbc:h2:mem:///test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: login-service
+#          uri: http://localhost:8080
+#          predicates:
+#            - Path=/api/login/**
+#          filters:
+#            - AddRequestHeader=appname, login
+#            - AuthorizationHeaderFilter
+#        - id: command-service
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/api/v1/**
+#            - Method=POST
+#          filters:
+#            - AddRequestHeader=appname, command
+#            - AuthorizationHeaderFilter
+#        - id: query-service
+#          uri: http://localhost:8082
+#          predicates:
+#            - Path=/api/v1/**
+#            - Method=GET
+#          filters:
+#            - AddRequestHeader=appname, query
+#            - AuthorizationHeaderFilter
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    reactor.netty: debug
+    com.kt: trace
