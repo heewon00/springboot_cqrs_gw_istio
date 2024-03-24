@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    reactor.netty: debug
+    com.kt: trace
