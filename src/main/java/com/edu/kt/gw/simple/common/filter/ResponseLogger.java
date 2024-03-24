@@ -1,5 +1,5 @@
 package com.edu.kt.gw.simple.common.filter;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+//import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.reactivestreams.Publisher;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
@@ -18,7 +18,7 @@ import java.io.ObjectInputFilter;
 import java.nio.charset.StandardCharsets;
 
 @Component
-@CircuitBreaker(name="apigw")
+//@CircuitBreaker(name="apigw")
 public class ResponseLogger implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         //⭐️Pre Filter
